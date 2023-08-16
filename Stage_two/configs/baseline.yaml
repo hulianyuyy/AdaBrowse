@@ -1,0 +1,53 @@
+feeder: dataset.dataloader_video.BaseFeeder
+phase: train
+dataset: phoenix2014 #[phoenix2014, phoenix2014-T, CSL, CSL-Daily]
+# dataset: phoenix14-si5
+num_epoch: 20
+conv2d_small_weight_path : /path_to_dir/baseline_resnet18_image_scale_96_dist_25/_best_model.pt
+conv2d_mid_weight_path : /path_to_dir/baseline_resnet18_image_scale_160_dist_25/_best_model.pt
+conv2d_big_weight_path : /path_to_dir/baseline_resnet18_image_scale_224_dist_25/_best_model.pt
+work_dir: ./work_dir/baseline/
+batch_size: 2
+random_seed: 0
+test_batch_size: 2
+num_worker: 8
+device: 0,1,2
+log_interval: 200
+eval_interval: 1
+save_interval: 1
+python_evaluate: False
+loss_weights:
+  #ConvCTC: 1.0
+  Flops: 0.1
+  SeqCTC: 1.0
+  #Dist: 25.0 
+  Frame_dist: 25.0
+# load_weights: ./slt_baseline/baseline_p14_framewise_biCTC/dev_21.90_epoch55_model.pt
+
+optimizer_args:
+  optimizer: Adam
+  base_lr: 0.0001
+  step: [ 10, 20]
+  learning_ratio: 1
+  weight_decay: 0.0001
+  start_epoch: 0
+  nesterov: False
+
+feeder_args:
+  mode: 'train'
+  datatype: 'video'
+  num_gloss: -1
+  image_scale_big : 224
+  image_scale_mid : 160
+  image_scale_small : 96  # denote the ratio for small images
+
+model: slr_network.SLRModel
+decode_mode: beam
+model_args:
+  num_classes: 1296
+  c2d_small_type: resnet18 #resnet18, regnet_x_800mf
+  c2d_type: resnet18 #resnet18, regnet_x_800mf
+  conv_type: 2
+  use_bn: 1
+  warmup_epoches: 5
+  policy: 'adaptive' # adaptive|random|central

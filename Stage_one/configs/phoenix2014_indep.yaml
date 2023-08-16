@@ -1,0 +1,4 @@
+dataset_root: ./dataset/phoenix2014_indep
+dict_path: ./preprocess/phoenix2014_indep/gloss_dict.npy
+evaluation_dir: ./evaluation/slr_eval
+evaluation_prefix: phoenix2014_indep-groundtruth
