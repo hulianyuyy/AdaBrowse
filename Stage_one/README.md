@@ -1,5 +1,5 @@
 # Stage one
-This repo holds codes of stage one for the paper: AdaBrowse: Adaptive Video Browser for Efficient Continuous Sign Language Recognition.(ACMMM 2023) [[paper]](https://arxiv.org/abs/2211.17081)
+This repo holds codes of stage one for the paper: AdaBrowse: Adaptive Video Browser for Efficient Continuous Sign Language Recognition.(ACMMM 2023) [[paper]](https://arxiv.org/abs/2308.08327)
 
 ## Prerequisites
 
